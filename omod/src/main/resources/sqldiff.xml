@@ -438,7 +438,7 @@
 			DEFAULT NULL;
 		</sql>
 	</diff>
-	<!-- ghanshyam 07/07/2012 New Requirement #305: Additional details in Ambulance 
+	<!-- ghanshyam 07/07/2012 New Requirement #305: Additional details in Ambulance
 		Bill -->
 	<diff>
 		<version>3.1.6</version>
@@ -449,7 +449,7 @@
 			for billing_ambulance_bill_item table
 		</description>
 		<sql>
-			<!-- ghanshyam 1/08/2012 feedback of New Requirement #305: Additional 
+			<!-- ghanshyam 1/08/2012 feedback of New Requirement #305: Additional
 				details in Ambulance Bill changed receiptNumber from Integer to varchar -->
 			ALTER TABLE billing_ambulance_bill_item ADD(`patient_name`
 			varchar(50),`receipt_number` varchar(13),`origin`
@@ -469,7 +469,7 @@
 			integer NOT NULL;
 		</sql>
 	</diff>
-	<!-- ghanshyam 25-02-2013 New Requirement #966[Billing]Add Paid Bill/Add 
+	<!-- ghanshyam 25-02-2013 New Requirement #966[Billing]Add Paid Bill/Add
 		Free Bill for Bangladesh module -->
 	<diff>
 		<version>3.1.8</version>
@@ -484,8 +484,8 @@
 			varchar(50)); -->
 		</sql>
 	</diff>
-	<!-- ghanshyam 3-june-2013 New Requirement #1632 Orders from dashboard must 
-		be appear in billing queue.User must be able to generate bills from this 
+	<!-- ghanshyam 3-june-2013 New Requirement #1632 Orders from dashboard must
+		be appear in billing queue.User must be able to generate bills from this
 		queue -->
 	<diff>
 		<version>3.1.9</version>
@@ -506,7 +506,7 @@
 		<date>Jan 2014</date>
 		<description>
 			ADD COLUMN waiver amount COLUMN IN
-			billing_patient_service_bill TABLE 
+			billing_patient_service_bill TABLE
 		</description>
 		<sql>
 <!-- 			ALTER TABLE billing_patient_service_bill ADD waiver_amount
@@ -520,37 +520,7 @@
 		<description>
 			create 'indoor_patient_service_bill' table and 'indoor_patient_service_bill_item' table
 		</description>
-		<sql>
-			CREATE
-			TABLE IF NOT EXISTS `indoor_patient_service_bill` (
-			`indoor_patient_service_bill_id` INT(11) NOT NULL AUTO_INCREMENT,
-			`creator`
-			INT(11) DEFAULT
-			NULL,
-			`amount` DECIMAL(19,2) DEFAULT NULL,
-			`created_date` DATETIME DEFAULT NULL,
-			`patient_id`
-			INT(11) DEFAULT
-			NULL,
-			`actual_amount` DECIMAL(19,2) DEFAULT NULL,
-			`encounter_id` INT(11) DEFAULT NULL,
-			PRIMARY KEY (`indoor_patient_service_bill_id`),
-			KEY
-			`fk_indoorpatientservicebill_patient` (`patient_id`),
-			KEY
-			`fk_indoorpatientservicebill_user` (`creator`),
-			CONSTRAINT
-			`fk_indoorpatientservicebill_user` FOREIGN KEY (`creator`) REFERENCES
-			`users` (`user_id`),
-			CONSTRAINT `fk_indoorpatientservicebill_patient`
-			FOREIGN KEY (`patient_id`)
-			REFERENCES `patient` (`patient_id`),
-			CONSTRAINT `fk_indoorpatientservicebill_encounter`
-			FOREIGN KEY (`encounter_id`)
-			REFERENCES `encounter` (`encounter_id`)
-			)
-			ENGINE=INNODB DEFAULT CHARSET=utf8;
-			
+		<sql>			
 			CREATE TABLE IF NOT EXISTS
 			`indoor_patient_service_bill_item` (
 			`indoor_patient_service_bill_item_id`
@@ -597,7 +567,7 @@
 		<date>March 10 2014</date>
 		<description>
 			ADD COLUMN encounter and discharge_status IN
-			billing_patient_service_bill TABLE 
+			billing_patient_service_bill TABLE
 		</description>
 		<sql>
 <!-- 			ALTER TABLE billing_patient_service_bill ADD COLUMN encounter
@@ -622,7 +592,7 @@
 		<author>Amit Sharma</author>
 		<date>December 31, 2014</date>
 		<description>
-			ALTER  TABLE indoor_patient_service_bill_item   
+			ALTER  TABLE indoor_patient_service_bill_item
 		</description>
 		<sql>
 			ALTER  TABLE indoor_patient_service_bill_item add COLUMN `order_type` varchar(50) NULL;
@@ -632,5 +602,5 @@
             ALTER TABLE indoor_patient_service_bill_item ADD COLUMN voided_by varchar(255) DEFAULT Null;
 		</sql>
 	</diff>
-	
+
 </sqldiff>
