@@ -362,14 +362,14 @@
 			(`id`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-			ALTER TABLE
+ 			ALTER TABLE
 			billing_patient_service_bill
 			ADD COLUMN `receipt_id` int(11)
 			default
 			NULL,
 			ADD CONSTRAINT `fk_patientservicebill_receipt` FOREIGN KEY
 			(`receipt_id`) REFERENCES `billing_receipt` (`id`);
-
+ 
 			ALTER TABLE
 			billing_ambulance_bill
 			ADD COLUMN `receipt_id` int(11) default
@@ -403,11 +403,11 @@
 			Add foreign keys for receipt
 		</description>
 		<sql>
- 			ALTER TABLE billing_patient_service_bill
+			ALTER TABLE billing_patient_service_bill
 			ADD COLUMN `free_bill`
 			bit(1)
 			default NULL;
- 
+
 			ALTER TABLE billing_patient_service_bill_item
 			ADD
 			COLUMN `order_id` int(11)
@@ -432,8 +432,10 @@
 		</description>
 		<sql>
  			ALTER TABLE `billing_patient_service_bill` ADD `actual_amount`
-			decimal(19,2) DEFAULT NULL; 
-			
+			decimal(19,2) DEFAULT NULL;  
+			ALTER TABLE
+			`billing_patient_service_bill_item` ADD `actual_amount` decimal(19,2)
+			DEFAULT NULL;
 		</sql>
 	</diff>
 	<!-- ghanshyam 07/07/2012 New Requirement #305: Additional details in Ambulance
@@ -493,9 +495,9 @@
 			Alter 'free_bill' column
 		</description>
 		<sql>
-<!--			ALTER TABLE
+			ALTER TABLE
 			billing_patient_service_bill MODIFY
-			free_bill INT(1); -->
+			free_bill INT(1); 
 		</sql>
 	</diff>
 	<diff>
@@ -569,7 +571,7 @@
 		</description>
 		<sql>
  			ALTER TABLE billing_patient_service_bill ADD COLUMN encounter
-			INT(11) DEFAULT NULL,ADD COLUMN discharge_status INT(1) DEFAULT 0;  
+			INT(11) DEFAULT NULL,ADD COLUMN discharge_status INT(1) DEFAULT 0;
 		</sql>
 	</diff>
 		<diff>
@@ -582,7 +584,7 @@
 		</description>
 		<sql>
 			ALTER TABLE billing_patient_service_bill ADD(`payment_mode`
-			varchar(50));
+			varchar(50)); 
 		</sql>
 	</diff>
 	<diff>
